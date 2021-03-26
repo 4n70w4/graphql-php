@@ -58,7 +58,7 @@ class ReferenceExecutor implements ExecutorImplementation
     private static $UNDEFINED;
 
     /** @var ExecutionContext */
-    private $exeContext;
+    protected $exeContext;
 
     /** @var SplObjectStorage */
     private $subFieldCache;
@@ -116,7 +116,7 @@ class ReferenceExecutor implements ExecutorImplementation
             };
         }
 
-        return new self($exeContext);
+        return new static($exeContext);
     }
 
     /**
@@ -604,7 +604,7 @@ class ReferenceExecutor implements ExecutorImplementation
      *
      * @return Throwable|Promise|mixed
      */
-    private function resolveFieldValueOrError(
+    protected function resolveFieldValueOrError(
         FieldDefinition $fieldDef,
         FieldNode $fieldNode,
         callable $resolveFn,
